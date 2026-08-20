@@ -21,7 +21,7 @@ The evaluation board supports a weighing range of up to **500 g** with **0.1 g r
 
 The NADC24B measures the differential output of the load cell through `CH1(P)` and `CH0(N)`. The M252 retrieves each 24-bit conversion result through SPI, calculates the calibrated weight, applies median filtering and tare compensation, and updates the OLED through I2C.
 
-<img width="2257" height="1453" alt="image" src="https://github.com/user-attachments/assets/3df1fcc5-45f6-43d9-9673-b9652edb9a29" />
+<img width="80%" alt="image" src="https://github.com/user-attachments/assets/3df1fcc5-45f6-43d9-9673-b9652edb9a29" />
 
 For detailed circuit connections, refer to the [coffee weighing scale schematic](Schematic/Schematic_NADC24_Weighing_Scale_V2.01.pdf).
 
