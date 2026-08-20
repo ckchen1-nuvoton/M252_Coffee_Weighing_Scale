@@ -88,21 +88,6 @@ The measurement flow is implemented as an interrupt-driven acquisition and filte
 * **SPI:** Master Mode 0, 10 MHz
 * **UART:** 115200 bps, 8-N-1
 
----
-
-## 📁 Project Structure
-
-| Path | Description |
-| :--- | :--- |
-| `SampleCode/ExampleCode/main.c` | Main application, button handling, calibration, tare, filtering, and OLED update |
-| `SampleCode/ExampleCode/NADC24B_Driver.c` | NADC24B initialization, calibration, register access, and SPI communication |
-| `SampleCode/ExampleCode/NADC24B_Driver.h` | NADC24B register definitions and driver interface |
-| `SampleCode/ExampleCode/LCD_Function.c` | Median-filter helper and APROM calibration-data storage |
-| `SampleCode/ExampleCode/SSD1306/` | SSD1306 OLED driver and fonts |
-| `SampleCode/ExampleCode/KEIL/` | Keil MDK project files |
-| `Schematic/` | Coffee weighing scale schematic |
-
----
 
 ## 📄 License
 
