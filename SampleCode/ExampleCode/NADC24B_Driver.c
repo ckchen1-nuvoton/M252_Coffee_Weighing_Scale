@@ -75,7 +75,7 @@ uint8_t Reset_NADC24B(void)
     SPI_WriteReg_Bank1_Until_Success(REG_ADDR_PWD_CTRL2, 0x00);
 
     /* Enable Chopping */
-    SPI_WriteReg_Bank1_Until_Success(REG_ADDR_CHOP_CTRL, 0x00);
+    SPI_WriteReg_Bank1_Until_Success(REG_ADDR_CHOP_CTRL, 0x40);
 		
     /* Lock registers */
     SPI_WriteReg_Bank2(REG_ADDR_PROTECT_KEY, 0xCA);

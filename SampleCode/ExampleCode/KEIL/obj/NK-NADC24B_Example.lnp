@@ -1,0 +1,23 @@
+--cpu=Cortex-M23
+".\obj\system_m251.o"
+".\obj\startup_m251.o"
+".\obj\main.o"
+".\obj\nadc24b_driver.o"
+".\obj\lcd_function.o"
+".\obj\timer.o"
+".\obj\fmc.o"
+".\obj\gpio.o"
+".\obj\spi.o"
+".\obj\sys.o"
+".\obj\uart.o"
+".\obj\clk.o"
+".\obj\retarget.o"
+".\obj\i2c.o"
+"..\..\..\Library\CMSIS\Lib\ARM\arm_ARMv8MBLl_math.lib"
+".\obj\hal_tick_control.o"
+".\obj\ssd1306.o"
+".\obj\ssd1306_fonts.o"
+--library_type=microlib --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict
+--map --first='startup_M251.o(RESET)' --datacompressor=off --info=inline --entry Reset_Handler --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\lst\NK-NADC24B_Example.map" -o .\obj\NK-NADC24B_Example.axf

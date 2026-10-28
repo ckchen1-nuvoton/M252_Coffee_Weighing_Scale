@@ -21,8 +21,9 @@
 #define CH0_CH1_CHANNEL           0x00
 #define CH2_CH3_CHANNEL           0x24
 
-#define CALIBRATION_AVERAGE       30
-#define MEDIAN_FILTER_NUM         12
+#define CALIBRATION_AVERAGE       36
+#define MEDIAN_FILTER_NUM         10
+#define ZERO_WAIT_COUNT           12
 
 #define BUTTON_START              PB2
 #define BUTTON_CALI               PB3
@@ -79,6 +80,10 @@ extern void Read_Data_from_APROM(uint32_t *data);
 extern void Save_Data_to_APROM(uint32_t *data);
 extern float32_t GetMedianNum(float32_t *bArray, uint32_t iFilterLen);
 extern void HAL_InitTick(uint32_t TickPriority);
+
+/* Auto Zero */
+static char Auto_Zero_Ready = 0;
+static char Auto_Zero_Count = 0;
 
 /*---------------------------------------------------------------------------------------------------------*/
 /* Functions                                                                                               */
@@ -281,8 +286,19 @@ void GPA_IRQHandler(void)
 						
 						/* Display 5g */
             //MF_Value_int32 = (int)(round(MF_Value_f32 / 5.0)) * 5;
-						
 						//MF_Value_int32 = (int32_t)(MF_Value_f32 * 100.0);
+            
+            // Auto Zero
+            if (!Auto_Zero_Ready)
+            {
+                Auto_Zero_Count++;
+
+                if (Auto_Zero_Count >= ZERO_WAIT_COUNT)
+                {
+                    Tare_Value_f32 = MF_Value_f32;  // 5 ???? offset
+                    Auto_Zero_Ready = 1;
+                }
+            }
 						
 						Display_Count ++;
         }
@@ -337,8 +353,7 @@ int main(void)
 		NVIC_SetPriority(I2C0_IRQn, 3);	
 		NVIC_SetPriority(TMR0_IRQn, 3);
 		NVIC_SetPriority(UART0_IRQn, 3);	
-		
-		
+				
 		/* GPIO */
     GPIO_SetMode(PB, BIT2, GPIO_MODE_INPUT);    /* BUTTON_START */
     GPIO_SetMode(PB, BIT3, GPIO_MODE_INPUT);    /* BUTTON_CALI  */
